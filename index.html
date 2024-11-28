@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Vietnam Map</title>
+    <!-- link with style.css -->
+    <link rel="stylesheet" href="style.css">
+    <!-- link with script.js -->
+    <script src="script.js" defer></script>
+    <!-- import font Lato Bold Italic Vietnamese -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap">
+    <!-- import font Lato Regular Vietnamese -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <div class="logo">Group 2</div>
+        <div class="nav-links">
+            <a href="#home" class="active">Home</a>
+            <a href="forum.html#forum" id="forum-link">Forum</a>
+            <a href="#local-matching">Local Matching</a>
+            <a href="#plan-food-tour">Plan Food Tour</a>
+            <a href="#pricing">Pricing</a>
+        </div>
+        <div class="auth-links">
+            <a href="#sign-up">Sign Up</a>
+            <a href="#log-in">Log In</a>
+        </div>
+    </div>
+
+    <!-- create a container where we can put information of the website at the beginning of the page -->
+    <div class="intro-container">
+        <h1>Interactive Vietnam Map</h1>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Distinctio consequuntur natus voluptate in, ea ex, ab quo necessitatibus laudantium, vero totam provident perspiciatis? Odio quo, repudiandae quas nihil ducimus laudantium!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iusto obcaecati? Provident, labore! Fuga repellendus ratione cum blanditiis praesentium iure, est velit optio adipisci, corrupti eligendi provident. Optio, praesentium nesciunt?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, iusto obcaecati? Provident, labore! Fuga repellendus ratione cum blanditiis praesentium iure, est velit optio adipisci, corrupti eligendi provident. Optio, praesentium nesciunt?</p>
+    </div>
+
+    <!-- create a container to contain 1 question and 4 buttons (Regions Exploration, Discusssion, Local Matching, Food Tour Planning) -->
+    <div class="question-container">
+        <h2>What are you looking for?</h2>
+        <div class="buttons">
+            <button id="regions-exploration">Regions Exploration</button>
+            <button id="discussion">Discussion</button>
+            <button id="local-matching">Local Matching</button>
+            <button id="food-tour-planning">Food Tour Planning</button>
+        </div>
+    </div>
+
+    <!-- Map Container -->
+    <div class="map-wrapper">
+        <div class="map-container" id="map">
+            <div id="svg-container"></div>
+            <div id="tooltip" class="tooltip"></div>
+        </div>
+
+        <!-- New Content Section -->
+        <div class="info-container">
+            <h2>This is the map that you can...</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, quibusdam alias, dolore aut recusandae odit sapiente quasi deleniti obcaecati praesentium voluptatibus doloremque omnis accusamus assumenda odio culpa ab atque sed.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet natus tempora labore amet unde consectetur aut quia eligendi? Deleniti impedit alias tenetur molestias aliquam fugiat possimus laudantium ab? Molestias, ratione!</p>
+
+            <!-- Search Bar -->
+            <div class="search-container">
+                <input type="text" id="region-search" placeholder="Search for a region..." />
+                <button id="search-button">Search</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="region-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <p id="modal-content">Region information will appear here.</p>
+        </div>
+    </div>
+
+    <!-- Region Details (hidden container) -->
+    <div id="region-details" style="display: none;">
+        <div id="VN-HN">
+            <h2>Hà Nội</h2>
+            <p>Welcome to Hà Nội, the capital of Vietnam! Known for its rich history, culture, and bustling streets.</p>
+            <div class="popup-map" id="hanoi-map-container">
+                <img src="regions/hanoi.svg" alt="Hà Nội" class="hanoi-map-img" />
+            </div>
+            <button onclick="alert('Explore Hanoi!')">Explore More</button>
+        </div>
+        <div id="VN-32">
+            <h2>Phú Yên</h2>
+            <p>Welcome to Phú Yên, known for its stunning beaches and breathtaking landscapes!</p>
+        </div>
+        <div id="VN-27">
+            <h2>Quảng Nam</h2>
+            <p>Welcome to Quảng Nam, home of Hội An Ancient Town and My Son Sanctuary!</p>
+        </div>
+    </div>
+    
+</body>
+</html>

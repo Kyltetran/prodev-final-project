@@ -1,0 +1,538 @@
+/* General styling */
+body {
+  margin: 0;
+  padding: 0;
+  height: 150vh;
+  font-family: Arial, sans-serif;
+}
+
+/* Navigation bar styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #004085;
+  color: #fff;
+  padding: 8px 20px;
+  position: fixed;
+  top: 0;
+  width: 98%;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+}
+
+.navbar .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.navbar .nav-links {
+  display: flex;
+  gap: 50px;
+}
+
+.navbar .nav-links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+  color: #dcdcdc;
+}
+
+.navbar .auth-links {
+  display: flex;
+  gap: 8px;
+  padding-right: 10px;
+}
+
+.navbar .auth-links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+  padding: 5px 10px;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar .auth-links a:hover {
+  background-color: #fff;
+  color: #004085;
+}
+
+/* Map Wrapper for side-by-side layout */
+.map-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center-align map-container and info-container vertically */
+  height: 100vh;
+  padding: 20px; /* Padding around the wrapper */
+  box-sizing: border-box; /* Include padding in element's total width/height */
+}
+
+/* Map Container */
+.map-container {
+  flex: 1; /* Take 1/2 of the width */
+  max-width: 60%; /* Optional max-width for responsiveness */
+  padding: 10px;
+}
+
+/* Info Container (next to map) */
+.info-container {
+  flex: 1; /* Take 1/2 of the width */
+  display: flex; /* Make the content inside info-container a flexbox */
+  flex-direction: column; /* Stack content vertically */
+  justify-content: center; /* Center content vertically within info-container */
+  padding: 8%;
+}
+
+/* Info Container Text Styling */
+.info-container h2 {
+  font-size: 24px;
+  color: #004085;
+  margin-bottom: 10px;
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  text-align: center; /* Optional: center-align text */
+  padding-right: 15%;
+}
+
+.info-container p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.5;
+  font-family: 'Lato', sans-serif;
+  margin-bottom: 15px;
+  text-align: center; /* Optional: center-align text */
+  padding-right: 15%;
+}
+
+/* Map container */
+.map-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100vh;
+  background-color: #ffffff;
+  position: relative;
+  padding-top: 25px; /* Offset for navbar height */
+}
+
+#svg-container {
+  flex: 0 0 60%; /* Map takes 65% of the width */
+  height: 100%;
+  max-width: 100%; /* Optional max width for responsiveness */
+  overflow: hidden;
+  padding: 20px;
+  background-color: #fff; /* Add a white background */
+  flex: 0 0 90%; /* Map takes 70% of the width */
+}
+
+#svg-container svg {
+  transform: scale(0.95); /* Scale down to 80% of the original size */
+  transform-origin: center; /* Scale relative to the center */
+}
+
+/* style the svg has the alignment center of the container */
+#svg-container {
+  display: flex;
+  justify-content:end;
+  align-items:baseline;
+}
+
+/* make the border in the svg clearer */
+path {
+  stroke: #fff;
+  stroke-width: 0.4;
+}
+
+/* Tooltip styling */
+.tooltip {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8); /* Dark semi-transparent background */
+  color: #fff; /* White text for contrast */
+  padding: 8px 12px; /* Inner padding for better readability */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 14px; /* Readable font size */
+  pointer-events: none; /* Tooltip doesn't block mouse events */
+  white-space: nowrap; /* Prevent text wrapping */
+  display: none; /* Initially hidden */
+  z-index: 1000; /* Ensure tooltip is above all other elements */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Subtle shadow for visibility */
+}
+
+
+/* style the intro-container to have their alignment center */
+.intro-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+@font-face {
+  font-family: 'Black Mango Bold';
+  src: url('fonts/BlackMango-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+  margin: 0;
+}
+
+.intro-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0; /* Ensure no padding at the top */
+  margin: 0; /* Remove any external margin */
+  height: calc(100vh - 100px - 25vh)
+}
+
+.intro-container h1 {
+  font-family: 'Black Mango Bold', sans-serif;
+  font-size: 48px;
+  color: #004085;
+  margin-top: 80px;
+}
+
+/* style information in the intro-container in have padding left and right */
+.intro-container p {
+  padding: 0 15%;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  font-weight: regular;
+}
+
+/* style the question-container to have center alignment */
+.question-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 20vh;
+  margin-bottom: 50px;
+}
+
+/* style h2 of the question-container to be the same as h1 */
+.question-container h2 {
+  font-family: 'Black Mango Bold', sans-serif;
+  font-size: 30px;
+  color: #004085;
+  margin-top: 0;
+}
+
+/* style button of question-container */
+.question-container button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #004085;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: 'Lato', sans-serif;
+  font-weight: regular;
+  margin: 5px;
+}
+
+.question-container button:hover {
+  background-color: #dcdcdc;
+  color: #004085;
+}
+
+/* style their is border or a box surrounding the question-container */
+.question-container {
+  border-top: 1px solid rgba(2, 28, 56, 0.259);
+  border-bottom: 1px solid rgba(2, 28, 56, 0.259);
+  padding-bottom: 45px;
+  padding-top: 30px;
+}
+
+/* make the question-container to be over the map-container */
+.question-container {
+  z-index: 1000;
+  position: relative;
+}
+
+/* Styling for the search container */
+.search-container {
+  display: flex;
+  flex-direction: column; /* Arrange children in a column */
+  width: 100%;
+  max-width: 600px; /* Optional: set a max-width for the container */
+  margin: 20px auto; /* Center the container horizontally */
+}
+
+/* Styling for the search bar */
+#region-search {
+  width: 85%; /* Full width */
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px; /* Rounded corners */
+  font-family: 'Lato', sans-serif;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  margin-bottom: 10px; /* Space between input and button */
+}
+
+/* Styling for the search button */
+#search-button {
+  width: 85%; /* Full width */
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #004085;
+  color: #fff;
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer;
+  transition: 0.5s;
+  font-family: 'Lato', sans-serif;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+#search-button:hover {
+  background-color: #003366;
+}
+
+/* Modal Styling */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black background with opacity */
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%; /* Could be more or less, depending on screen size */
+  border-radius: 8px;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+}
+
+/* Image inside the modal */
+.modal-content img {
+  display: block; /* Make the image a block element */
+  margin: 0 auto 20px auto; /* Center the image and add space below */
+  max-height: 300px; /* Limit the height */
+  width: 100%; /* Stretch to full width */
+  object-fit: contain; /* Preserve aspect ratio without cropping */
+  border-radius: 5px; /* Optional: Add rounded corners */
+}
+
+/* Button inside the modal */
+.modal-content button {
+  display: inline-block; /* Inline-block for button alignment */
+  background-color: #004085; /* Dark blue */
+  color: #ffffff; /* White text */
+  padding: 10px 20px; /* Add padding for a larger button */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Rounded corners */
+  font-family: 'Lato', sans-serif; /* Use the same font as the modal */
+  font-size: 14px; /* Adjust font size */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  margin: 5px; /* Add margin between buttons */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Button hover effect */
+.modal-content button:hover {
+  background-color: #003366; /* Darker blue on hover */
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.popup-map {
+  position: relative;
+  width: 100%;
+  max-width: 800px; /* Adjust map size */
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.hanoi-map-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  position: relative; /* Ensures child elements are positioned relative to this image */
+}
+
+.hanoi-map-container {
+  position: relative; /* Enable absolute positioning for child elements */
+}
+
+/* Forum Page Styles */
+.forum-container {
+  display: flex;
+  margin-top: 60px; /* Offset for fixed navbar */
+  padding: 20px;
+  font-family: 'Lato', sans-serif;
+  gap: 20px;
+}
+
+.sidebar {
+  flex: 0 0 20%;
+  background-color: #f7f7f7;
+  border-right: 1px solid #ddd;
+  padding: 20px;
+}
+
+.sidebar h3 {
+  margin-bottom: 10px;
+  color: #004085;
+  font-weight: bold;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.create-post-btn {
+  background-color: #004085;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  /* margin-bottom: 20px; */
+  display: block;
+}
+
+.create-post-btn:hover {
+  background-color: #003366;
+}
+
+.post {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #fff;
+}
+
+.post h4 {
+  margin: 0 0 10px;
+  font-size: 16px;
+  color: #004085;
+}
+
+.post p {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+.see-more {
+  font-size: 14px;
+  color: #004085;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.comments {
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+/* Highlight active link */
+.nav-links a.active {
+  color: #c2c2c2; /* Change the color of the active link */
+  font-weight: bold; /* Make it bold */
+}
+
+/* Forum Actions Container */
+.forum-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between elements */
+  margin-bottom: 40px;
+}
+
+/* Category Dropdown */
+.category-container select {
+  padding: 10px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f7f7f7;
+  cursor: pointer;
+  outline: none;
+}
+
+/* style search-forum-container, its input and its button */
+.search-forum-container {
+  display: flex;
+  gap: 10px;
+  width: 500px;
+}
+
+.search-forum-container input {
+  padding: 10px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f7f7f7;
+  outline: none;
+  width: 100%;
+}
+
+.search-forum-container button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #004085;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block;
+}
+
+.search-forum-container button:hover {
+  background-color: #003366;
+}
+
+

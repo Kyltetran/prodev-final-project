@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum</title>
+    <!-- link with style.css -->
+    <link rel="stylesheet" href="style.css">
+    <!-- link with script.js -->
+    <script src="script.js" defer></script>
+    <!-- import font Lato Bold Italic Vietnamese -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap">
+    <!-- import font Lato Regular Vietnamese -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <div class="logo">Group 2</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="forum.html" class="active">Forum</a>
+            <a href="#local-matching">Local Matching</a>
+            <a href="#plan-food-tour">Plan Food Tour</a>
+            <a href="#pricing">Pricing</a>
+        </div>
+        <div class="auth-links">
+            <a href="#sign-up">Sign Up</a>
+            <a href="#log-in">Log In</a>
+        </div>
+    </div>
+
+    <!-- Forum Content -->
+    <div class="forum-container">
+        <div class="sidebar">
+            <h3>Tags Hot Gần Đây</h3>
+            <ul>
+                <li>#quán ăn ngon</li>
+                <li>#cách làm món ăn</li>
+                <li>#công thức</li>
+            </ul>
+            <h3>Tags Đã Xem</h3>
+            <ul>
+                <li>#lịch sử món ăn</li>
+                <li>#phổ biến</li>
+                <li>#trending</li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <div class="forum-actions">
+                <!-- Create Post Button -->
+                <button class="create-post-btn" onclick="window.location.href='create-post.html'">+ Create Post</button>
+            
+                <!-- Search Bar -->
+                <div class="search-forum-container">
+                    <input type="text" id="post-search" placeholder="Search posts..." />
+                    <button id="search-forum-button">Search</button>
+                </div>
+            
+                <!-- Category Dropdown -->
+                <div class="category-container">
+                    <select id="category-filter">
+                        <option value="" disabled selected>Select Category</option>
+                        <option value="lich-su-mon-an">#lịch sử món ăn</option>
+                        <option value="quan-an-ngon">#quán ăn ngon</option>
+                        <option value="cong-thuc">#công thức</option>
+                        <option value="cach-lam-mon-an">#cách làm món ăn</option>
+                        <option value="pho-bien">#phổ biến</option>
+                        <option value="trending">#trending</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="post">
+                <h4>ABC - 1 min ago - #công thức</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                <a href="#" class="see-more">See more</a>
+                <div class="comments">
+                    <p>Comment: This is an example comment...</p>
+                </div>
+            </div>
+            <div class="post">
+                <h4>DEF - 5 mins ago - #lịch sử món ăn</h4>
+                <p>Quisque id sapien eu purus...</p>
+                <a href="#" class="see-more">See more</a>
+                <div class="comments">
+                    <p>Comment: Another example comment...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
