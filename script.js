@@ -190,30 +190,32 @@ document.getElementById('category-filter').addEventListener('change', (event) =>
 
 async function loadApprovedPosts() {
     try {
-        // Fetch the approved posts from your Apps Script (doGet)
-        const response = await fetch('https://script.google.com/macros/s/AKfycbxfK-V7T2NqrqYhA5Wwh0X5i6p2_TRCACQ8pVzTBslS981r0DPrZHQnUVVtqnfz3_T9Rg/exec');
+        // Fetch the approved posts from the Google Apps Script API
+        const response = await fetch('https://script.google.com/macros/s/AKfycbxfYaCUdTn_3xIFn-eLabLPaEE_7UftRBi6H5PpIP9lhoqaaQ908ORCvitKyBZKo9HURg/exec');
+        
+        if (!response.ok) {
+            throw new Error('Failed to load posts');
+        }
+    
         const posts = await response.json();
         
-        // Find the container where the posts will be displayed
-        const postsContainer = document.getElementById('approved-posts-container');
-        
-        // Clear any existing posts
-        postsContainer.innerHTML = '';
-        
-        // Loop through the approved posts and append them to the container
+        // Display posts in the forum
+        const postsContainer = document.getElementById('approved-posts');
+        postsContainer.innerHTML = ''; // Clear previous posts
         posts.forEach(post => {
             const postElement = document.createElement('div');
             postElement.classList.add('post');
-            
             postElement.innerHTML = `
-                <h3>${post.title}</h3>
-                <p>${post.content}</p>
-                <small>Category: ${post.category} | Posted on: ${new Date(post.date).toLocaleString()}</small>
+            <h3>${post.title}</h3>
+            <p>${post.content}</p>
+            <p><strong>Category:</strong> ${post.category}</p>
+            <p><strong>Date:</strong> ${new Date(post.date).toLocaleString()}</p>
             `;
-            
             postsContainer.appendChild(postElement);
         });
-    } catch (error) {
-        console.error("Error fetching posts:", error);
-    }
-}
+        } catch (error) {
+        console.error('Error loading posts:', error);
+        alert('There was an error loading the posts.');
+        }
+  }
+  
