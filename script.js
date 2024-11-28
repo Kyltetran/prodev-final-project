@@ -187,3 +187,32 @@ document.getElementById('category-filter').addEventListener('change', (event) =>
     const selectedCategory = event.target.value;
     console.log(`Filtering by category: ${selectedCategory}`); // Replace with actual filter logic
 });
+
+// Function to fetch approved posts from Google Apps Script
+async function loadApprovedPosts() {
+    try {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbxfK-V7T2NqrqYhA5Wwh0X5i6p2_TRCACQ8pVzTBslS981r0DPrZHQnUVVtqnfz3_T9Rg/exec');
+        const posts = await response.json();
+        
+        // Get the container where posts will be displayed
+        const postsList = document.getElementById('posts-list');
+        postsList.innerHTML = ''; // Clear existing posts
+
+        // Loop through posts and display them
+        posts.forEach(post => {
+            const postDiv = document.createElement('div');
+            postDiv.classList.add('post');
+            postDiv.innerHTML = `
+                <h3>${post.title}</h3>
+                <p>${post.content}</p>
+                <p><em>Category: ${post.category} | Date: ${new Date(post.date).toLocaleString()}</em></p>
+            `;
+            postsList.appendChild(postDiv);
+        });
+    } catch (error) {
+        console.error('Error loading posts:', error);
+    }
+}
+
+// Call this function when the page loads to display the posts
+window.onload = loadApprovedPosts;
