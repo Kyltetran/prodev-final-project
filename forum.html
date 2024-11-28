@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap">
     <!-- import font Lato Regular Vietnamese -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&display=swap">
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-analytics.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-firestore.js"></script>   
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -48,14 +51,14 @@
         </div>
 
         <div class="posts">
-            <h2>Approved Posts</h2>
-            <!-- Button to Refresh Posts -->
-            <button onclick="loadApprovedPosts()">Refresh Posts</button>
-    
-            <!-- Container to display posts -->
-            <div id="approved-posts-container">
-                <!-- Dynamic posts will be loaded here -->
+            <!-- Approved Posts Section -->
+            <div class="approved-posts-container" id="approved-posts-container">
+                <h2>Approved Posts</h2>
+                <!-- Posts will be dynamically loaded here -->
             </div>
+
+            <!-- Button to load approved posts -->
+            <button onclick="loadApprovedPosts()">Load Approved Posts</button>
         </div>
 
 

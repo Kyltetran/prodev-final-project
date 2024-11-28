@@ -188,35 +188,90 @@ document.getElementById('category-filter').addEventListener('change', (event) =>
     console.log(`Filtering by category: ${selectedCategory}`); // Replace with actual filter logic
 });
 
-async function loadApprovedPosts() {
+import { initializeApp } from "firebase/app";
+import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
+
+// Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyBkuDObreW6ZXRmmYdfGxNltSxI6RrP5Ow",
+    authDomain: "prodev-final-project.firebaseapp.com",
+    projectId: "prodev-final-project",
+    storageBucket: "prodev-final-project.firebasestorage.app",
+    messagingSenderId: "925743713205",
+    appId: "1:925743713205:web:74607138f04a9860b3a7fc",
+    measurementId: "G-3SHVEQ3E3C"
+};
+
+// Initialize Firebase and Firestore
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// Function to save post to Firestore
+async function savePostToFirestore(title, content, category) {
     try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbw9ofPMaXVsXCDkJ-KoAg6U8gYS945GEwXslUZ-U8XS_JlZSfXlsMPb0nEprP268YYYXg/exec');
-        
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        
-        const posts = await response.json();
-        console.log(posts);  // Log the response to inspect it
-        
-        const container = document.getElementById('approved-posts-container');
-        container.innerHTML = '';  // Clear existing posts
-        
-        // Loop through the posts and add them to the page
-        posts.forEach(post => {
-            const postElement = document.createElement('div');
-            postElement.classList.add('post');
-            
-            postElement.innerHTML = `
-                <h3>${post.title}</h3>
-                <p>${post.content}</p>
-                <p><strong>Category:</strong> ${post.category}</p>
-                <p><em>${post.date}</em></p>
-            `;
-            
-            container.appendChild(postElement);
+        const docRef = await addDoc(collection(db, 'posts'), {
+        title: title,
+        content: content,
+        category: category,
+        status: 'pending', // Initial status
+        timestamp: new Date()
         });
-    } catch (error) {
-        console.error('Error fetching posts:', error);
+        console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+        console.error("Error adding document: ", e);
     }
 }
+
+// Handle form submission
+async function submitToFirestore(event) {
+    event.preventDefault();  // Prevent form from submitting
+
+    const form = document.getElementById('create-post-form');
+    const title = form['title'].value;
+    const content = form['content'].value;
+    const category = form['category'].value;
+
+    // Save the post to Firestore
+    await savePostToFirestore(title, content, category);
+
+    // Reset the form and show success
+    form.reset();
+    alert("Post submitted successfully and awaiting approval!");
+}
+
+// Function to load approved posts from Firestore
+async function loadApprovedPosts() {
+    const postsContainer = document.getElementById('approved-posts-container');
+    postsContainer.innerHTML = '';  // Clear the current posts
+
+    try {
+        // Fetch posts from Firestore
+        const querySnapshot = await getDocs(collection(db, "posts"));
+        querySnapshot.forEach((doc) => {
+            const post = doc.data();
+            const status = post.status;
+            
+            if (status === 'approved') {
+                // Create a new post element for each approved post
+                const postElement = document.createElement('div');
+                postElement.classList.add('post');
+                
+                postElement.innerHTML = `
+                    <h3>${post.title}</h3>
+                    <p>${post.content}</p>
+                    <p><strong>Category:</strong> ${post.category}</p>
+                    <p><em>${post.timestamp.toDate()}</em></p>
+                `;
+                
+                // Append the new post element to the posts container
+                postsContainer.appendChild(postElement);
+            }
+        });
+    } catch (error) {
+        console.error("Error fetching approved posts: ", error);
+    }
+}
+
+window.onload = function() {
+    loadApprovedPosts(); // Automatically load posts when the page is loaded
+};
