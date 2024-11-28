@@ -188,31 +188,32 @@ document.getElementById('category-filter').addEventListener('change', (event) =>
     console.log(`Filtering by category: ${selectedCategory}`); // Replace with actual filter logic
 });
 
-// Function to fetch approved posts from Google Apps Script
 async function loadApprovedPosts() {
     try {
+        // Fetch the approved posts from your Apps Script (doGet)
         const response = await fetch('https://script.google.com/macros/s/AKfycbxfK-V7T2NqrqYhA5Wwh0X5i6p2_TRCACQ8pVzTBslS981r0DPrZHQnUVVtqnfz3_T9Rg/exec');
         const posts = await response.json();
         
-        // Get the container where posts will be displayed
-        const postsList = document.getElementById('posts-list');
-        postsList.innerHTML = ''; // Clear existing posts
-
-        // Loop through posts and display them
+        // Find the container where the posts will be displayed
+        const postsContainer = document.getElementById('approved-posts-container');
+        
+        // Clear any existing posts
+        postsContainer.innerHTML = '';
+        
+        // Loop through the approved posts and append them to the container
         posts.forEach(post => {
-            const postDiv = document.createElement('div');
-            postDiv.classList.add('post');
-            postDiv.innerHTML = `
+            const postElement = document.createElement('div');
+            postElement.classList.add('post');
+            
+            postElement.innerHTML = `
                 <h3>${post.title}</h3>
                 <p>${post.content}</p>
-                <p><em>Category: ${post.category} | Date: ${new Date(post.date).toLocaleString()}</em></p>
+                <small>Category: ${post.category} | Posted on: ${new Date(post.date).toLocaleString()}</small>
             `;
-            postsList.appendChild(postDiv);
+            
+            postsContainer.appendChild(postElement);
         });
     } catch (error) {
-        console.error('Error loading posts:', error);
+        console.error("Error fetching posts:", error);
     }
 }
-
-// Call this function when the page loads to display the posts
-window.onload = loadApprovedPosts;

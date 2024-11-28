@@ -48,6 +48,19 @@
                 <li>#trending</li>
             </ul>
         </div>
+
+        <div class="posts">
+            <h2>Approved Posts</h2>
+            <!-- Button to Refresh Posts -->
+            <button onclick="loadApprovedPosts()">Refresh Posts</button>
+    
+            <!-- Container to display posts -->
+            <div id="approved-posts-container">
+                <!-- Dynamic posts will be loaded here -->
+            </div>
+        </div>
+
+
         <div class="main-content">
             <div class="forum-actions">
                 <!-- Create Post Button -->
@@ -73,11 +86,10 @@
                 </div>
             </div>
 
-            <!-- Main forum posts -->
-            <div class="forum-posts">
-                <!-- Posts will appear here dynamically from your backend or API -->
+            <!-- Forum Content -->
+            <div class="forum-container">
                 <h2>Forum Posts</h2>
-                <div id="posts-container"></div>
+                <div id="posts-list"></div> <!-- Where approved posts will appear -->
             </div>
             
             <!-- <div class="post">
