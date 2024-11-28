@@ -190,32 +190,33 @@ document.getElementById('category-filter').addEventListener('change', (event) =>
 
 async function loadApprovedPosts() {
     try {
-        // Fetch the approved posts from the Google Apps Script API
-        const response = await fetch('https://script.google.com/macros/s/AKfycbxfYaCUdTn_3xIFn-eLabLPaEE_7UftRBi6H5PpIP9lhoqaaQ908ORCvitKyBZKo9HURg/exec');
+        const response = await fetch('https://script.google.com/macros/s/AKfycbw9ofPMaXVsXCDkJ-KoAg6U8gYS945GEwXslUZ-U8XS_JlZSfXlsMPb0nEprP268YYYXg/exec');
         
         if (!response.ok) {
-            throw new Error('Failed to load posts');
+            throw new Error('Network response was not ok');
         }
-    
-        const posts = await response.json();
         
-        // Display posts in the forum
-        const postsContainer = document.getElementById('approved-posts');
-        postsContainer.innerHTML = ''; // Clear previous posts
+        const posts = await response.json();
+        console.log(posts);  // Log the response to inspect it
+        
+        const container = document.getElementById('approved-posts-container');
+        container.innerHTML = '';  // Clear existing posts
+        
+        // Loop through the posts and add them to the page
         posts.forEach(post => {
             const postElement = document.createElement('div');
             postElement.classList.add('post');
+            
             postElement.innerHTML = `
-            <h3>${post.title}</h3>
-            <p>${post.content}</p>
-            <p><strong>Category:</strong> ${post.category}</p>
-            <p><strong>Date:</strong> ${new Date(post.date).toLocaleString()}</p>
+                <h3>${post.title}</h3>
+                <p>${post.content}</p>
+                <p><strong>Category:</strong> ${post.category}</p>
+                <p><em>${post.date}</em></p>
             `;
-            postsContainer.appendChild(postElement);
+            
+            container.appendChild(postElement);
         });
-        } catch (error) {
-        console.error('Error loading posts:', error);
-        alert('There was an error loading the posts.');
-        }
-  }
-  
+    } catch (error) {
+        console.error('Error fetching posts:', error);
+    }
+}
